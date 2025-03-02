@@ -6,13 +6,17 @@ const transitionTime = parseInt(process.env.SLIDE_TRANSITION_TIME ?? "7") // def
 
 export default function SlidingBanner({ slides }: { slides: any }) {
   const [currentSlide, setCurrentSlide] = useState(0)
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1)
+      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1))
     }, transitionTime * 1000)
 
     return () => clearInterval(interval)
-  }, [currentSlide, slides])
+  }, [slides])
 
   return <>{slides[currentSlide]}</>
 }
+
+
+

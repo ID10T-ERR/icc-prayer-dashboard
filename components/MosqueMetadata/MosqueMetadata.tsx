@@ -6,22 +6,23 @@ export default function MosqueMetadata({
   metadata: MosqueMetadataType
 }) {
   return (
-    <div className="md:flex text-white text-center md:text-left">
-      <div className="mr-4 flex-shrink-0 self-center">
+    <div className="flex flex-col md:flex-row text-white text-center md:text-left">
+      <div className="mr-2 flex-shrink-0 self-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className="m-2 max-w-full lg:max-w-lg max-h-16 mx-auto"
+          className="m-1 max-w-full lg:max-w-md max-h-12 mx-auto"
           src={metadata.logo_url}
           alt=""
         />
       </div>
       <div>
-        <h2 className="mt-3 md:mt-5 font-bold text-2xl md:text-3xl">
+        <h2 className="mt-1 md:mt-2 font-bold text-xl md:text-2xl">
           {metadata.name}
         </h2>
-        <p className="mt-3 text-xl mx-5 md:mx-0">{metadata.address}</p>
-        <p className="text-xl">{metadata.website}</p>
+        <p className="mt-1 text-base mx-3 md:mx-0">{metadata.address}</p>
+        <p className="text-base">{metadata.website}</p>
       </div>
     </div>
   )
 }
+

@@ -3,10 +3,6 @@ import { MosqueMetadataType } from "@/types/MosqueDataType"
 import moment from "moment"
 import { Fragment } from "react"
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ")
-}
-
 export default function Calendar({
   prayerTimes,
   metadata,
@@ -15,166 +11,111 @@ export default function Calendar({
   metadata: MosqueMetadataType
 }) {
   const today = moment().format("D MMMM")
+
+  // Table headers (example)
   const headers = [
     "Fajr Starts",
-    "Fajr Jama'ah",
+    "Fajr Iqama",
     "Sunrise",
     "Zuhr Starts",
-    "Zuhr Jama'ah",
+    "Zuhr Iqama",
     "Asr Starts",
-    "Asr Jama'ah",
+    "Asr Iqama",
     "Maghrib Starts",
-    "Maghrib Jama'ah",
+    "Maghrib Iqama",
     "Isha Starts",
-    "Isha Jama'ah",
+    "Isha Iqama",
   ]
 
   return (
-    <div className="py-10 px-4 sm:px-6 lg:px-8">
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1 className="text-2xl font-semibold leading-6 text-gray-900">
-            {metadata.name} Prayer Times
-          </h1>
-          <p className="mt-2 text-sm text-gray-700">{metadata.address}</p>
-        </div>
+    <div className="p-6">
+      {/* Big Title & Mosque Info */}
+      <div className="mb-8">
+        <h1 className="text-6xl font-extrabold text-[#d5d8dc]">
+          {metadata.name} Prayer Times
+        </h1>
+        <p className="mt-4 text-4xl text-[#d5d8dc]">
+          {metadata.address}
+        </p>
       </div>
-      <div className="mt-8 flow-root">
-        <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle">
-            <table className="min-w-full border-separate border-spacing-0">
-              <thead>
-                <tr>
-                  <th
-                    scope="col"
-                    className="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
-                    key={`header_date`}
-                  >
-                    Date
-                  </th>
 
-                  {headers.map((header, i) => (
-                    <th
-                      scope="col"
-                      className="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-center text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:table-cell"
-                      key={`header_${i}`}
-                    >
-                      {header}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {prayerTimes.map((prayerTime, prayerTimeIdx) => {
-                  const times = [
-                    moment(prayerTime.fajr.start, ["HH:mm"]).format("h:mm a"),
-                    moment(prayerTime.fajr.congregation_start, [
-                      "HH:mm",
-                    ]).format("h:mm a"),
+      {/* Big Table */}
+      <div className="overflow-x-auto">
+        <table className="min-w-full border-separate border-spacing-0">
+          <thead>
+            <tr>
+              <th className="py-4 px-2 text-left text-4xl font-bold text-[#d5d8dc]">
+                Date
+              </th>
+              {headers.map((header, i) => (
+                <th
+                  key={i}
+                  className="py-4 px-2 text-center text-4xl font-bold text-[#d5d8dc]"
+                >
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {prayerTimes.map((pt, idx) => {
+              const isToday = `${pt.day_of_month} ${pt.month_label}` === today
 
-                    moment(prayerTime.sunrise_start, ["HH:mm"]).format(
-                      "h:mm a",
-                    ),
+              // Construct array of times for each column
+              const times = [
+                moment(pt.fajr.start, ["HH:mm"]).format("h:mm a"),
+                moment(pt.fajr.congregation_start, ["HH:mm"]).format("h:mm a"),
+                moment(pt.sunrise_start, ["HH:mm"]).format("h:mm a"),
+                moment(pt.zuhr.start, ["HH:mm"]).format("h:mm a"),
+                moment(pt.zuhr.congregation_start, ["HH:mm"]).format("h:mm a"),
+                moment(pt.asr.start, ["HH:mm"]).format("h:mm a"),
+                moment(pt.asr.congregation_start, ["HH:mm"]).format("h:mm a"),
+                moment(pt.maghrib.start, ["HH:mm"]).format("h:mm a"),
+                moment(pt.maghrib.congregation_start, ["HH:mm"]).format("h:mm a"),
+                moment(pt.isha.start, ["HH:mm"]).format("h:mm a"),
+                moment(pt.isha.congregation_start, ["HH:mm"]).format("h:mm a"),
+              ]
 
-                    moment(prayerTime.zuhr.start, ["HH:mm"]).format("h:mm a"),
-                    moment(prayerTime.zuhr.congregation_start, [
-                      "HH:mm",
-                    ]).format("h:mm a"),
-
-                    <>
-                      <p>
-                        {moment(prayerTime.asr.start, ["HH:mm"]).format(
-                          "h:mm a",
-                        )}
-                      </p>
-                      <p>
-                        {moment(prayerTime.asr.start_secondary, [
-                          "HH:mm",
-                        ]).format("h:mm a")}
-                      </p>
-                    </>,
-                    moment(prayerTime.asr.congregation_start, ["HH:mm"]).format(
-                      "h:mm a",
-                    ),
-
-                    moment(prayerTime.maghrib.start, ["HH:mm"]).format(
-                      "h:mm a",
-                    ),
-                    moment(prayerTime.maghrib.congregation_start, [
-                      "HH:mm",
-                    ]).format("h:mm a"),
-
-                    moment(prayerTime.isha.start, ["HH:mm"]).format("h:mm a"),
-                    moment(prayerTime.isha.congregation_start, [
-                      "HH:mm",
-                    ]).format("h:mm a"),
-                  ]
-
-                  return (
-                    <Fragment
-                      key={`prayerTime_${prayerTime.day_of_month}_${prayerTime.month_label}_fragment`}
-                    >
-                      {prayerTime.day_of_month === "1" ? (
-                        <tr
-                          className="border-t border-gray-200"
-                          key={`month_${prayerTime.month_label}`}
-                        >
-                          <th
-                            colSpan={12}
-                            scope="colgroup"
-                            className="bg-mosqueGreen py-2 pl-4 text-left text-sm font-semibold text-white"
-                          >
-                            {prayerTime.month_label}
-                          </th>
-                        </tr>
-                      ) : null}
-                      <tr
-                        key={`prayerTime_${prayerTime.day_of_month}_${prayerTime.month_label}`}
-                        className={`${
-                          `${prayerTime.day_of_month} ${prayerTime.month_label}` ===
-                          today
-                            ? `!bg-mosqueGreen-highlight text-white`
-                            : "text-gray-900"
-                        }`}
-                        id={`${prayerTime.day_of_month}_${prayerTime.month_label}`}
+              return (
+                <Fragment key={`${pt.month_label}-${pt.day_of_month}`}>
+                  {/* If it's the first day of the month, show a month header row */}
+                  {pt.day_of_month === "1" && (
+                    <tr>
+                      <th
+                        colSpan={12}
+                        className="bg-mosqueGreen-dark py-3 pl-4 text-left text-5xl font-extrabold text-white"
                       >
-                        <td
-                          className={classNames(
-                            prayerTimeIdx !== prayerTimes.length - 1
-                              ? "border-b border-gray-200"
-                              : "",
-                            "whitespace-nowrap pl-4 text-left text-sm font-medium",
-                          )}
-                          key={`prayerTime_${prayerTime.day_of_month}_${prayerTime.month_label}_date`}
-                        >
-                          <a
-                            href={`#${prayerTime.day_of_month}_${prayerTime.month_label}`}
-                          >
-                            {prayerTime.day_of_month} {prayerTime.month_label}
-                          </a>
-                        </td>
-                        {times.map((columnData, i) => (
-                          <td
-                            className={classNames(
-                              prayerTimeIdx !== prayerTimes.length - 1
-                                ? "border-b border-gray-200"
-                                : "",
-                              "whitespace-nowrap p-2 text-center text-sm font-medium",
-                            )}
-                            key={`prayerTime_${prayerTime.day_of_month}_${prayerTime.month_label}_${i}`}
-                          >
-                            {columnData}
-                          </td>
-                        ))}
-                      </tr>
-                    </Fragment>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
+                        {pt.month_label}
+                      </th>
+                    </tr>
+                  )}
+                  <tr
+                    className={`${
+                      isToday ? "bg-mosqueGreen-highlight text-white" : "text-[#d5d8dc]"
+                    } text-3xl`}
+                  >
+                    {/* Date Cell */}
+                    <td className="py-4 px-2 font-extrabold">
+                      {pt.day_of_month} {pt.month_label}
+                    </td>
+                    {/* Times */}
+                    {times.map((t, i2) => (
+                      <td key={i2} className="py-4 px-2 text-center font-bold">
+                        {t}
+                      </td>
+                    ))}
+                  </tr>
+                </Fragment>
+              )
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   )
 }
+
+
+
+
+
