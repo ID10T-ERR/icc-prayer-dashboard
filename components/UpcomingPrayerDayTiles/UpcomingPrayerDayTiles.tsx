@@ -38,7 +38,7 @@ export default function UpcomingPrayerDayTiles() {
             <th className="p-2 border border-white">Maghrib</th>
             {/* Merged columns to show "Iqama is 5 Athan" */}
             <td colSpan={3} className="p-2 border border-white">
-              Iqama is 5 Athan
+              Iqama is 5 min after Athan
             </td>
           </tr>
           <tr>

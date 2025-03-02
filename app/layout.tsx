@@ -4,7 +4,16 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata = {
+  title: "MosqueScreen Project by MosqueOS",
+  description: "Digital signage for Mosque",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <head>
@@ -14,14 +23,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#0C5A4B" />
       </head>
-      <body className={`${inter.className} bg-mosqueGreen w-screen h-screen flex justify-center items-center`}>
-        <div className="digital-signage-content w-full h-full flex flex-col justify-between">
-          {children}
+      <body className={inter.className}>
+        {/* Outer border with arch + pattern */}
+        <div className="border-container">
+          {/* Inner content with solid background */}
+          <div className="inner-content">
+            {children}
+          </div>
         </div>
       </body>
     </html>
   );
 }
+
 
 
 

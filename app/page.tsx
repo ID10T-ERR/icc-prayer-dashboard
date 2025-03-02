@@ -42,18 +42,15 @@ export default async function Home() {
   const upcomingPrayerDays: UpcomingPrayerTimes[] =
     await getPrayerTimesForUpcomingDays()
 
+  // Build the slides array directly (1 for SunriseJummahTiles, 1 for Ramadan schedule)
   let slides = [
     <SunriseJummahTiles
       jummahTimes={jummahTimes}
       key={"sunrise_jummah_times"}
     />,
+    // Insert your static Ramadan schedule (UpcomingPrayerDayTiles) once
+    <UpcomingPrayerDayTiles key={"ramadan-schedule"} />
   ]
-
-  upcomingPrayerDays.forEach((times) => {
-    slides.push(
-      <UpcomingPrayerDayTiles />
-    )
-  })
 
   return (
     <>
@@ -73,15 +70,15 @@ export default async function Home() {
 
         {/* Prayer Times */}
         <section className="flex-1 p-2 flex flex-col items-center justify-center">
-          <PrayerTimes today={today} /* tomorrow={tomorrow} if you want to pass it */ />
+          <PrayerTimes today={today} /* tomorrow={tomorrow} if needed */ />
         </section>
 
         {/* Notice below prayer times but above the slider */}
-        <div className="p-2">
+        <div className="p-2 flex flex-col items-center justify-center text-center">
           <Notice />
         </div>
 
-        {/* Bottom slider */}
+        {/* Bottom slider with slides array */}
         <footer className="p-2">
           <div className="landscape-slider-wrapper">
             <SlidingBanner slides={slides} />
@@ -95,6 +92,7 @@ export default async function Home() {
     </>
   )
 }
+
 
 
 
