@@ -17,7 +17,7 @@ export default function UpcomingPrayerDayTiles() {
         </thead>
         <tbody>
           <tr>
-            <th className="p-2 border border-white">Fajer</th>
+            <th className="p-2 border border-white">Fajr</th>
             <td className="p-2 border border-white">5:45</td>
             <td className="p-2 border border-white">6:30</td>
             <td className="p-2 border border-white">6:15</td>
