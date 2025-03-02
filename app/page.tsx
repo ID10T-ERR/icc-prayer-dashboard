@@ -51,7 +51,7 @@ export default async function Home() {
 
   upcomingPrayerDays.forEach((times) => {
     slides.push(
-      <UpcomingPrayerDayTiles times={times} key={times.day_of_month} />
+      <UpcomingPrayerDayTiles />
     )
   })
 
