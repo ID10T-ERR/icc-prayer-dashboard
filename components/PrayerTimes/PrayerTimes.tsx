@@ -51,7 +51,6 @@ export default function PrayerTimes({
     const interval = setInterval(() => {
       setNextPrayerTime(getNextPrayer(today));
     }, 60 * 1000);
-
     return () => clearInterval(interval);
   }, [today]);
 
@@ -100,12 +99,6 @@ export default function PrayerTimes({
               </th>
               <td className="text-3xl md:text-6xl font-semibold">
                 {moment(prayer.data.start, ["HH:mm"]).format("h:mm")}
-                {/* Skip Asr secondary */}
-                {prayer.label !== "Asr" && prayer.data?.start_secondary && (
-                  <div className="block mt-2">
-                    {moment(prayer.data.start_secondary, ["HH:mm"]).format("h:mm")}
-                  </div>
-                )}
               </td>
               <td className="text-3xl md:text-6xl font-bold">
                 <span
@@ -137,7 +130,6 @@ export default function PrayerTimes({
             {prayer.label === "Fajr" && (
               <tr>
                 <td colSpan={4} className="text-center text-xl md:text-3xl py-3 font-bold">
-                  {/* Reintroduce your sun icon here */}
                   <img
                     src="/sun-128.png"
                     alt="Sunrise"
