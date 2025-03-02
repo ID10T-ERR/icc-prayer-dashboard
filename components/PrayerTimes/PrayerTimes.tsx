@@ -7,41 +7,35 @@ import moment from "moment";
 
 export default function PrayerTimes({
   today,
-  tomorrow,
 }: {
   today: DailyPrayerTime;
-  tomorrow: DailyPrayerTime;
+  // If you had tomorrow, you can remove it or keep it unused
 }) {
   const PrayerTimesArray = [
     {
       label: "Fajr",
       arabicLabel: "الفجر",
       data: today.fajr,
-      tomorrow: tomorrow.fajr,
     },
     {
       label: "Zuhr",
       arabicLabel: "الظهر",
       data: today.zuhr,
-      tomorrow: tomorrow.zuhr,
     },
     {
       label: "Asr",
       arabicLabel: "العصر",
       data: today.asr,
-      tomorrow: tomorrow.asr,
     },
     {
       label: "Maghrib",
       arabicLabel: "المغرب",
       data: today.maghrib,
-      tomorrow: tomorrow.maghrib,
     },
     {
       label: "Isha",
       arabicLabel: "العشاء",
       data: today.isha,
-      tomorrow: tomorrow.isha,
     },
   ];
 
@@ -58,7 +52,8 @@ export default function PrayerTimes({
     <table className="w-full border-collapse border-none text-white mx-auto table-auto">
       <thead>
         <tr className="text-center [&>*]:p-3 md:[&>*]:p-6 md:[&>*]:border [&>*]:border-mosqueGreen-dark [&>th]:border-t-0 [&>th:last-of-type]:border-r-0">
-          <th className="sr-only">Prayer time</th>
+          {/* 3 columns total: Label, Athan, Iqama */}
+          <th className="sr-only">Prayer</th>
           <th className="text-3xl md:text-6xl font-extrabold">
             <div>أذان</div>
             Athan
@@ -66,10 +61,6 @@ export default function PrayerTimes({
           <th className="text-3xl md:text-6xl font-extrabold">
             <div>إقامة</div>
             Iqama
-          </th>
-          <th className="text-3xl md:text-6xl font-extrabold">
-            <div>غداً</div>
-            Tomorrow
           </th>
         </tr>
       </thead>
@@ -97,9 +88,11 @@ export default function PrayerTimes({
                 <div className="arabic-label mb-1">{prayer.arabicLabel}</div>
                 {prayer.label}
               </th>
+              {/* Athan */}
               <td className="text-3xl md:text-6xl font-semibold">
                 {moment(prayer.data.start, ["HH:mm"]).format("h:mm")}
               </td>
+              {/* Iqama */}
               <td className="text-3xl md:text-6xl font-bold">
                 <span
                   className={
@@ -112,31 +105,18 @@ export default function PrayerTimes({
                   {moment(prayer.data.congregation_start, ["HH:mm"]).format("h:mm")}
                 </span>
               </td>
-              <td className="text-3xl md:text-6xl font-bold">
-                <span
-                  className={
-                    nextPrayerTime.today === false &&
-                    nextPrayerTime.prayerIndex === index
-                      ? "underline decoration-mosqueGreen-highlight underline-offset-8"
-                      : ""
-                  }
-                >
-                  {moment(prayer.tomorrow.congregation_start, ["HH:mm"]).format("h:mm")}
-                </span>
-              </td>
             </tr>
 
-            {/* Insert smaller Sunrise row AFTER Fajr */}
+            {/* Sunrise row after Fajr */}
             {prayer.label === "Fajr" && (
               <tr>
-                <td colSpan={4} className="text-center text-xl md:text-3xl py-3 font-bold">
+                <td colSpan={3} className="text-center text-xl md:text-3xl py-3 font-bold">
                   <img
                     src="/sun-128.png"
                     alt="Sunrise"
                     className="inline-block h-8 w-8 mr-2 align-middle"
                   />
-                  Sunrise{" "}
-                  {moment(today.sunrise_start, ["HH:mm"]).format("h:mm")}
+                  Sunrise {moment(today.sunrise_start, ["HH:mm"]).format("h:mm")}
                 </td>
               </tr>
             )}
@@ -146,3 +126,4 @@ export default function PrayerTimes({
     </table>
   );
 }
+

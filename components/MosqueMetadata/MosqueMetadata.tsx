@@ -1,28 +1,26 @@
-import { MosqueMetadataType } from "@/types/MosqueDataType"
+import { MosqueMetadataType } from "@/types/MosqueDataType";
 
 export default function MosqueMetadata({
   metadata,
 }: {
-  metadata: MosqueMetadataType
+  metadata: MosqueMetadataType;
 }) {
   return (
-    <div className="flex flex-col md:flex-row text-white text-center md:text-left">
-      <div className="mr-2 flex-shrink-0 self-center">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          className="m-1 max-w-full lg:max-w-md max-h-12 mx-auto"
-          src={metadata.logo_url}
-          alt=""
-        />
-      </div>
-      <div>
-        <h2 className="mt-1 md:mt-2 font-bold text-xl md:text-2xl">
-          {metadata.name}
-        </h2>
-        <p className="mt-1 text-base mx-3 md:mx-0">{metadata.address}</p>
-        <p className="text-base">{metadata.website}</p>
-      </div>
+    <div className="flex flex-col items-center text-center text-white">
+      {/* Larger logo */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className="m-2 max-w-full max-h-24"
+        src={metadata.logo_url}
+        alt="Mosque Logo"
+      />
+
+      {/* Address and website (no title, since it's in the logo) */}
+      <p className="mt-1 text-base md:text-xl">{metadata.address}</p>
+      <p className="text-base md:text-xl">{metadata.website}</p>
     </div>
-  )
+  );
 }
+
+
 

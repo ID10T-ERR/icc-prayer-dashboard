@@ -35,13 +35,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const today: DailyPrayerTime = await getPrayerTimesForToday()
+  // if you no longer need tomorrow in prayer times, that's fine
   const tomorrow: DailyPrayerTime = await getPrayerTimesForTomorrow()
   const jummahTimes: JummahTimes = await getJummahTimes()
   const mosqueMetadata: MosqueMetadataType = await getMetaData()
   const upcomingPrayerDays: UpcomingPrayerTimes[] =
     await getPrayerTimesForUpcomingDays()
 
-  // Build slides
   let slides = [
     <SunriseJummahTiles
       jummahTimes={jummahTimes}
@@ -58,32 +58,30 @@ export default async function Home() {
   return (
     <>
       <main className="p-4 md:p-5 digital-signage-content flex flex-col h-full">
-        {/* Reordered header: Clock & Date at the very top, MosqueMetadata & Notice below */}
+        {/* Header with Clock, Date, MosqueMetadata, centered */}
         <header className="flex flex-col items-center mb-4">
-          {/* Time (Clock) at top */}
           <div className="p-2">
             <Clock />
           </div>
-          {/* Date below Clock */}
           <div className="p-2">
             <Date />
           </div>
-          {/* Mosque Metadata below Date */}
           <div className="p-2">
             <MosqueMetadata metadata={mosqueMetadata} />
           </div>
-          {/* Notice (hidden on small screens) */}
-          <div className="hidden md:block p-2">
-            <Notice />
-          </div>
         </header>
 
-        {/* Main Prayer Times Section (expanded) */}
-        <section className="flex-1 p-2">
-          <PrayerTimes today={today} tomorrow={tomorrow} />
+        {/* Prayer Times */}
+        <section className="flex-1 p-2 flex flex-col items-center justify-center">
+          <PrayerTimes today={today} /* tomorrow={tomorrow} if you want to pass it */ />
         </section>
 
-        {/* Bottom: Sliding Banner remains landscape */}
+        {/* Notice below prayer times but above the slider */}
+        <div className="p-2">
+          <Notice />
+        </div>
+
+        {/* Bottom slider */}
         <footer className="p-2">
           <div className="landscape-slider-wrapper">
             <SlidingBanner slides={slides} />
@@ -92,9 +90,11 @@ export default async function Home() {
 
         <ServiceWorker />
       </main>
+
       <Blackout prayerTimeToday={today} />
     </>
   )
 }
+
 
 
