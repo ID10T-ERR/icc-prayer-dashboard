@@ -35,7 +35,7 @@
   position: absolute;
   top: 5%;
   left: 5%;
-  width: 95%;
+  width: 90%;
   height: 95%;
   background: #0F715D; /* or any color you want for the center area */
   overflow: auto;      /* scroll if content overflows */
