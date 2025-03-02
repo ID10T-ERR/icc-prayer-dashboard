@@ -8,11 +8,6 @@
   width: 100vw;
   height: 100vh;
 
-  /* Arched top corners */
-  border-top-left-radius: 80px;
-  border-top-right-radius: 80px;
-  overflow: hidden; /* keep corners clean */
-
   /* Same background pattern you had */
   background-color: #16a085;
   background-image:
@@ -40,8 +35,8 @@
   position: absolute;
   top: 5%;
   left: 5%;
-  width: 90%;
-  height: 90%;
+  width: 95%;
+  height: 95%;
   background: #0F715D; /* or any color you want for the center area */
   overflow: auto;      /* scroll if content overflows */
   border-radius: 20px; /* optional: if you want corners inside too */
