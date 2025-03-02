@@ -41,6 +41,7 @@ export default async function Home() {
   const upcomingPrayerDays: UpcomingPrayerTimes[] =
     await getPrayerTimesForUpcomingDays()
 
+  // Build slides
   let slides = [
     <SunriseJummahTiles
       jummahTimes={jummahTimes}
@@ -57,19 +58,22 @@ export default async function Home() {
   return (
     <>
       <main className="p-4 md:p-5 digital-signage-content flex flex-col h-full">
-        {/* Top Row: Clock, Date, and Mosque Metadata */}
-        <header className="flex flex-col md:flex-row items-center justify-between mb-4">
-          <div className="flex-1 flex justify-center p-2">
+        {/* Reordered header: Clock & Date at the very top, MosqueMetadata & Notice below */}
+        <header className="flex flex-col items-center mb-4">
+          {/* Time (Clock) at top */}
+          <div className="p-2">
             <Clock />
           </div>
-          <div className="flex-1 flex justify-center p-2">
+          {/* Date below Clock */}
+          <div className="p-2">
             <Date />
           </div>
-          <div className="flex-1 flex justify-center p-2">
+          {/* Mosque Metadata below Date */}
+          <div className="p-2">
             <MosqueMetadata metadata={mosqueMetadata} />
           </div>
-          {/* Optionally, if you want Notice visible on larger screens */}
-          <div className="hidden md:flex flex-1 justify-center p-2">
+          {/* Notice (hidden on small screens) */}
+          <div className="hidden md:block p-2">
             <Notice />
           </div>
         </header>
@@ -85,10 +89,12 @@ export default async function Home() {
             <SlidingBanner slides={slides} />
           </div>
         </footer>
+
         <ServiceWorker />
       </main>
       <Blackout prayerTimeToday={today} />
     </>
   )
 }
+
 
