@@ -48,7 +48,7 @@ export default function PrayerTimes({
   }, [today]);
 
   return (
-    <table className="w-full border-collapse border-none text-white mx-auto table-auto">
+    <table className="mx-auto w-full border-collapse border-none text-white table-auto">
       <thead>
         <tr className="text-center [&>*]:p-3 md:[&>*]:p-6 md:[&>*]:border [&>*]:border-mosqueGreen-dark [&>th]:border-t-0 [&>th:last-of-type]:border-r-0">
           {/* 3 columns: Label, Athan, Iqama */}
