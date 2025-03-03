@@ -8,7 +8,6 @@
   width: 100vw;
   height: 100vh;
 
-  /* Same background pattern you had */
   background-color: #16a085;
   background-image:
     linear-gradient(67.5deg, #16a085 10%, transparent 10%),
@@ -30,19 +29,20 @@
     0 0, 0 0, 0 0, 0 0;
 }
 
-/* Inner content area with solid background, leaving the border visible */
+/* Inner content area with solid background, 
+   centered horizontally by left:5% & right:5% */
 .inner-content {
   position: absolute;
   top: 5%;
+  bottom: 2%; /* slightly smaller than 5% if you want more vertical space */
   left: 5%;
-  width: 90%;
-  height: 95%;
-  background: #0F715D; /* or any color you want for the center area */
-  overflow: auto;      /* scroll if content overflows */
+  right: 5%;
+  background: #0F715D; /* or any color for the center area */
+  overflow: auto;      
   border-radius: 20px; /* optional: if you want corners inside too */
 }
 
-/* Portrait mode adjustments for your TV (if you have them) */
+/* Optional portrait mode adjustments */
 @media screen and (min-width: 1024px) {
   .digital-signage-content {
     width: 1080px;
@@ -50,8 +50,7 @@
     margin: auto;
     overflow: hidden;
   }
-  
-  /* Keep your sliding banner horizontal, etc. */
+
   .landscape-slider-wrapper {
     display: flex;
     flex-direction: row;
@@ -61,14 +60,4 @@
     overflow-x: auto;
     white-space: nowrap;
   }
-
-  /* globals.css (somewhere after your Tailwind directives) */
 }
-
-
-
-
-
-
-
-
