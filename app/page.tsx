@@ -35,21 +35,16 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const today: DailyPrayerTime = await getPrayerTimesForToday()
-  // if you no longer need tomorrow in prayer times, that's fine
   const tomorrow: DailyPrayerTime = await getPrayerTimesForTomorrow()
   const jummahTimes: JummahTimes = await getJummahTimes()
   const mosqueMetadata: MosqueMetadataType = await getMetaData()
   const upcomingPrayerDays: UpcomingPrayerTimes[] =
     await getPrayerTimesForUpcomingDays()
 
-  // Build the slides array directly (1 for SunriseJummahTiles, 1 for Ramadan schedule)
+  // Build slides array
   let slides = [
-    <SunriseJummahTiles
-      jummahTimes={jummahTimes}
-      key={"sunrise_jummah_times"}
-    />,
-    // Insert your static Ramadan schedule (UpcomingPrayerDayTiles) once
-    <UpcomingPrayerDayTiles key={"ramadan-schedule"} />
+    <SunriseJummahTiles jummahTimes={jummahTimes} key="sunrise_jummah_times" />,
+    <UpcomingPrayerDayTiles key="ramadan-schedule" />,
   ]
 
   return (
@@ -68,8 +63,8 @@ export default async function Home() {
           </div>
         </header>
 
-        {/* Prayer Times */}
-        <section className="flex-1 p-2 flex flex-col items-center justify-center">
+        {/* PrayerTimes: remove 'flex-1' so it doesn't push banner down */}
+        <section className="p-2 flex flex-col items-center">
           <PrayerTimes today={today} /* tomorrow={tomorrow} if needed */ />
         </section>
 
@@ -78,8 +73,8 @@ export default async function Home() {
           <Notice />
         </div>
 
-        {/* Bottom slider with slides array */}
-        <footer className="p-2">
+        {/* Bottom slider with slides array: reduce padding to bring it up */}
+        <footer className="p-1">
           <div className="landscape-slider-wrapper">
             <SlidingBanner slides={slides} />
           </div>
@@ -92,7 +87,3 @@ export default async function Home() {
     </>
   )
 }
-
-
-
-
