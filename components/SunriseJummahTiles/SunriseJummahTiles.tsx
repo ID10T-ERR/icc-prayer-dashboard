@@ -16,10 +16,12 @@ export default function SunriseJummahTiles({
           key={index}
           className="bg-mosqueGreen-dark text-white p-4 lg:p-6"
         >
-          <dt className="text-2xl md:text-5xl font-bold">
+          {/* Smaller label font */}
+          <dt className="text-xl md:text-3xl font-bold">
             {jummahTime.label}
           </dt>
-          <dd className="mt-2 text-3xl md:text-6xl font-extrabold tracking-tight">
+          {/* Smaller time font */}
+          <dd className="mt-2 text-2xl md:text-4xl font-extrabold tracking-tight">
             {moment(jummahTime.time, ["HH:mm"]).format("h:mm")}
           </dd>
         </div>
@@ -27,6 +29,7 @@ export default function SunriseJummahTiles({
     </dl>
   )
 }
+
 
 
 

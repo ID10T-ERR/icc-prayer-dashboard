@@ -53,11 +53,11 @@ export default function PrayerTimes({
         <tr className="text-center [&>*]:p-3 md:[&>*]:p-6 md:[&>*]:border [&>*]:border-mosqueGreen-dark [&>th]:border-t-0 [&>th:last-of-type]:border-r-0">
           {/* 3 columns: Label, Athan, Iqama */}
           <th className="sr-only">Prayer</th>
-          <th className="text-2xl md:text-5xl font-extrabold">
+          <th className="text-xl md:text-4xl font-extrabold">
             <div>أذان</div>
             Athan
           </th>
-          <th className="text-2xl md:text-5xl font-extrabold">
+          <th className="text-xl md:text-4xl font-extrabold">
             <div>إقامة</div>
             Iqama
           </th>
@@ -83,16 +83,16 @@ export default function PrayerTimes({
                 last-of-type:border-b-0
               "
             >
-              <th className="text-left md:text-right text-2xl md:text-5xl font-bold">
+              <th className="text-left md:text-right text-xl md:text-4xl font-bold">
                 <div className="arabic-label mb-1">{prayer.arabicLabel}</div>
                 {prayer.label}
               </th>
               {/* Athan */}
-              <td className="text-2xl md:text-5xl font-semibold">
+              <td className="text-xl md:text-4xl font-semibold">
                 {moment(prayer.data.start, ["HH:mm"]).format("h:mm")}
               </td>
               {/* Iqama */}
-              <td className="text-2xl md:text-5xl font-bold">
+              <td className="text-xl md:text-4xl font-bold">
                 <span
                   className={
                     nextPrayerTime.today === true &&
@@ -109,7 +109,7 @@ export default function PrayerTimes({
             {/* Sunrise row after Fajr */}
             {prayer.label === "Fajr" && (
               <tr>
-                <td colSpan={3} className="text-center text-lg md:text-2xl py-3 font-bold">
+                <td colSpan={3} className="text-center text-base md:text-xl py-3 font-bold">
                   <img
                     src="/sun-128.png"
                     alt="Sunrise"
@@ -125,5 +125,3 @@ export default function PrayerTimes({
     </table>
   );
 }
-
-
