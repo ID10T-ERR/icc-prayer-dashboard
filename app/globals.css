@@ -33,10 +33,10 @@
 /* Inner content area with solid background, leaving the border visible */
 .inner-content {
   position: absolute;
-  top: 5%;
+  top: 3%;
   left: 5%;
   width: 90%;
-  height: 95%;
+  height: 92%;
   background: #0F715D; /* or any color you want for the center area */
   overflow: auto;      /* scroll if content overflows */
   border-radius: 20px; /* optional: if you want corners inside too */
