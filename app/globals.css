@@ -29,21 +29,17 @@
     0 0, 0 0, 0 0, 0 0;
 }
 
-/* Center inner content properly */
+/* Inner content area with solid background, 
+   centered horizontally by left:5% & right:5% */
 .inner-content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 95vw; /* Ensure it's not too wide */
-  height: 95vh; /* Ensure it stays within the screen */
-  background: #0F715D; /* Center content area */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center all elements */
-  align-items: center; /* Center horizontally */
-  border-radius: 20px;
-  overflow: hidden; /* Prevent scroll issues */
+  top: 5%;
+  bottom: 2%; /* slightly smaller than 5% if you want more vertical space */
+  left: 5%;
+  right: 5%;
+  background: #0F715D; /* or any color for the center area */
+  overflow: auto;      
+  border-radius: 20px; /* optional: if you want corners inside too */
 }
 
 /* Optional portrait mode adjustments */
