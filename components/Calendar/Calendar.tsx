@@ -12,7 +12,7 @@ export default function Calendar({
 }) {
   const today = moment().format("D MMMM")
 
-  // Table headers (example)
+  // Table headers
   const headers = [
     "Fajr Starts",
     "Fajr Iqama",
@@ -30,11 +30,11 @@ export default function Calendar({
   return (
     <div className="p-6">
       {/* Big Title & Mosque Info */}
-      <div className="mb-8">
-        <h1 className="text-6xl font-extrabold text-[#d5d8dc]">
+      <div className="mb-8 text-center">
+        <h1 className="text-7xl font-extrabold text-[#d5d8dc]">
           {metadata.name} Prayer Times
         </h1>
-        <p className="mt-4 text-4xl text-[#d5d8dc]">
+        <p className="mt-4 text-5xl text-[#d5d8dc]">
           {metadata.address}
         </p>
       </div>
@@ -44,13 +44,13 @@ export default function Calendar({
         <table className="min-w-full border-separate border-spacing-0">
           <thead>
             <tr>
-              <th className="py-4 px-2 text-left text-4xl font-bold text-[#d5d8dc]">
+              <th className="py-4 px-2 text-left text-5xl font-bold text-[#d5d8dc]">
                 Date
               </th>
               {headers.map((header, i) => (
                 <th
                   key={i}
-                  className="py-4 px-2 text-center text-4xl font-bold text-[#d5d8dc]"
+                  className="py-4 px-2 text-center text-5xl font-bold text-[#d5d8dc]"
                 >
                   {header}
                 </th>
@@ -83,7 +83,7 @@ export default function Calendar({
                     <tr>
                       <th
                         colSpan={12}
-                        className="bg-mosqueGreen-dark py-3 pl-4 text-left text-5xl font-extrabold text-white"
+                        className="bg-mosqueGreen-dark py-3 pl-4 text-left text-6xl font-extrabold text-white"
                       >
                         {pt.month_label}
                       </th>
@@ -92,15 +92,15 @@ export default function Calendar({
                   <tr
                     className={`${
                       isToday ? "bg-mosqueGreen-highlight text-white" : "text-[#d5d8dc]"
-                    } text-3xl`}
+                    } text-4xl`}
                   >
                     {/* Date Cell */}
-                    <td className="py-4 px-2 font-extrabold">
+                    <td className="py-4 px-2 font-extrabold text-5xl">
                       {pt.day_of_month} {pt.month_label}
                     </td>
                     {/* Times */}
                     {times.map((t, i2) => (
-                      <td key={i2} className="py-4 px-2 text-center font-bold">
+                      <td key={i2} className="py-4 px-2 text-center font-bold text-7xl">
                         {t}
                       </td>
                     ))}
@@ -114,6 +114,7 @@ export default function Calendar({
     </div>
   )
 }
+
 
 
 

@@ -9,11 +9,7 @@ export const metadata = {
   description: "Digital signage for Mosque",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -24,9 +20,8 @@ export default function RootLayout({
         <meta name="theme-color" content="#0C5A4B" />
       </head>
       <body className={inter.className}>
-        {/* Outer border with arch + pattern */}
         <div className="border-container">
-          {/* Inner content with solid background */}
+          {/* Center content using flexbox */}
           <div className="inner-content">
             {children}
           </div>
@@ -35,6 +30,7 @@ export default function RootLayout({
     </html>
   );
 }
+
 
 
 
