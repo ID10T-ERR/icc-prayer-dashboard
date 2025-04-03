@@ -37,7 +37,7 @@
   bottom: 3%; /* slightly smaller than 5% if you want more vertical space */
   left: 3%;
   right: 3%;
-  background: #0F715D; /* or any color for the center area */
+  background: #04382d; /* or any color for the center area */
   overflow: auto;      
   border-radius: 20px; /* optional: if you want corners inside too */
 }
