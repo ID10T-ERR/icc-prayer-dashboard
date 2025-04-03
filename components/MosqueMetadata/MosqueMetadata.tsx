@@ -10,14 +10,14 @@ export default function MosqueMetadata({
       {/* Larger logo */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        className="m-2 max-w-full max-h-24"
+        className="m-2 max-w-full max-h-40"
         src={metadata.logo_url}
         alt="Mosque Logo"
       />
 
       {/* Address and website (no title, since it's in the logo) */}
       {/* <p className="mt-1 text-base md:text-xl">{metadata.address}</p> */}
-      <p className="text-base md:text-xl">{metadata.website}</p>
+      {/* <p className="text-base md:text-xl">{metadata.website}</p> */}
     </div>
   );
 }
