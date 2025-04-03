@@ -16,7 +16,7 @@ export default function MosqueMetadata({
       />
 
       {/* Address and website (no title, since it's in the logo) */}
-      <p className="mt-1 text-base md:text-xl">{metadata.address}</p>
+      {/* <p className="mt-1 text-base md:text-xl">{metadata.address}</p> */}
       <p className="text-base md:text-xl">{metadata.website}</p>
     </div>
   );

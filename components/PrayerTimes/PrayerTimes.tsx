@@ -53,11 +53,11 @@ export default function PrayerTimes({
         <tr className="text-center [&>*]:p-3 md:[&>*]:p-6 md:[&>*]:border [&>*]:border-mosqueGreen-dark [&>th]:border-t-0 [&>th:last-of-type]:border-r-0">
           {/* 3 columns: Label, Athan, Iqama */}
           <th className="sr-only">Prayer</th>
-          <th className="text-xl md:text-5xl font-extrabold">
+          <th className="text-xl md:text-6xl font-extrabold">
             <div>أذان</div>
             Athan
           </th>
-          <th className="text-xl md:text-5xl font-extrabold">
+          <th className="text-xl md:text-6xl font-extrabold">
             <div>إقامة</div>
             Iqama
           </th>
@@ -88,11 +88,11 @@ export default function PrayerTimes({
                 {prayer.label}
               </th>
               {/* Athan */}
-              <td className="text-xl md:text-6xl font-semibold">
+              <td className="text-xl md:text-7xl font-semibold">
                 {moment(prayer.data.start, ["HH:mm"]).format("h:mm")}
               </td>
               {/* Iqama */}
-              <td className="text-xl md:text-6xl font-bold">
+              <td className="text-xl md:text-7xl font-bold">
                 <span
                   className={
                     nextPrayerTime.today === true &&
