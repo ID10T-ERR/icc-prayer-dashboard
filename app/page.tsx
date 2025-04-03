@@ -16,13 +16,12 @@ import {
   getPrayerTimesForTomorrow,
 } from "@/services/MosqueDataService"
 import type {
-  DailyPrayerTime,
-  UpcomingPrayerTimes,
+  DailyPrayerTime
 } from "@/types/DailyPrayerTimeType"
 import type { JummahTimes } from "@/types/JummahTimesType"
 import type { MosqueMetadataType } from "@/types/MosqueDataType"
 import type { Metadata } from "next"
-import UpcomingPrayerDayTiles from "@/components/UpcomingPrayerDayTiles/UpcomingPrayerDayTiles"
+// import UpcomingPrayerDayTiles from "@/components/UpcomingPrayerDayTiles/UpcomingPrayerDayTiles"
 
 export async function generateMetadata(): Promise<Metadata> {
   const mosqueMetadata: MosqueMetadataType = await getMetaData()
@@ -38,8 +37,8 @@ export default async function Home() {
   const tomorrow: DailyPrayerTime = await getPrayerTimesForTomorrow()
   const jummahTimes: JummahTimes = await getJummahTimes()
   const mosqueMetadata: MosqueMetadataType = await getMetaData()
-  const upcomingPrayerDays: UpcomingPrayerTimes[] =
-    await getPrayerTimesForUpcomingDays()
+  // const upcomingPrayerDays: UpcomingPrayerTimes[] =
+  //   await getPrayerTimesForUpcomingDays()
 
   let slides = [
     <SunriseJummahTiles
