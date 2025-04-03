@@ -8,16 +8,16 @@
   width: 100vw;
   height: 100vh;
 
-  background-color: #16a085;
+  background-color: #08705b;
   background-image:
-    linear-gradient(67.5deg, #16a085 10%, transparent 10%),
-    linear-gradient(157.5deg, #16a085 10%, transparent 10%),
-    linear-gradient(67.5deg, transparent 90%, #16a085 90%),
-    linear-gradient(157.5deg, transparent 90%, #16a085 90%),
-    linear-gradient(22.5deg, #16a085 10%, transparent 10%),
-    linear-gradient(112.5deg, #16a085 10%, transparent 10%),
-    linear-gradient(22.5deg, transparent 90%, #16a085 90%),
-    linear-gradient(112.5deg, transparent 90%, #16a085 90%),
+    linear-gradient(67.5deg, #08705b 10%, transparent 10%),
+    linear-gradient(157.5deg, #08705b 10%, transparent 10%),
+    linear-gradient(67.5deg, transparent 90%, #08705b 90%),
+    linear-gradient(157.5deg, transparent 90%, #08705b 90%),
+    linear-gradient(22.5deg, #08705b 10%, transparent 10%),
+    linear-gradient(112.5deg, #08705b 10%, transparent 10%),
+    linear-gradient(22.5deg, transparent 90%, #08705b 90%),
+    linear-gradient(112.5deg, transparent 90%, #08705b 90%),
     linear-gradient(22.5deg, transparent 33%, #d5d8dc 33%, #d5d8dc 36%, transparent 36%, transparent 64%, #d5d8dc 64%, #d5d8dc 67%, transparent 67%),
     linear-gradient(-22.5deg, transparent 33%, #d5d8dc 33%, #d5d8dc 36%, transparent 36%, transparent 64%, #d5d8dc 64%, #d5d8dc 67%, transparent 67%),
     linear-gradient(112.5deg, transparent 33%, #d5d8dc 33%, #d5d8dc 36%, transparent 36%, transparent 64%, #d5d8dc 64%, #d5d8dc 67%, transparent 67%),
