@@ -44,7 +44,7 @@ export default async function Home() {
   // Build slides array
   let slides = [
     <SunriseJummahTiles jummahTimes={jummahTimes} key="sunrise_jummah_times" />,
-    <UpcomingPrayerDayTiles key="ramadan-schedule" />,
+    // <UpcomingPrayerDayTiles key="ramadan-schedule" />
   ]
 
   return (
