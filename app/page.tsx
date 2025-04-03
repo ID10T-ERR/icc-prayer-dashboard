@@ -41,10 +41,11 @@ export default async function Home() {
   const upcomingPrayerDays: UpcomingPrayerTimes[] =
     await getPrayerTimesForUpcomingDays()
 
-  // Build slides array
   let slides = [
-    <SunriseJummahTiles jummahTimes={jummahTimes} key="sunrise_jummah_times" />,
-    // <UpcomingPrayerDayTiles key="ramadan-schedule" />
+    <SunriseJummahTiles
+      jummahTimes={jummahTimes}
+      key={"sunrise_jummah_times"}
+    />,
   ]
 
   return (

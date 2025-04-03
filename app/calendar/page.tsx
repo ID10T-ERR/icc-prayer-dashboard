@@ -1,24 +1,22 @@
 import Calendar from "@/components/Calendar/Calendar"
-import { getAllPrayerTimes, getMetaData } from "@/services/MosqueDataService"
-import { MosqueMetadataType } from "@/types/MosqueDataType"
+import { getMosqueData } from "@/services/MosqueDataService"
 import { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
-  const mosqueMetadata: MosqueMetadataType = await getMetaData()
+  const { metadata } = await getMosqueData()
 
   return {
-    title: `${mosqueMetadata.name} Prayer Times | MosqueScreen Project by MosqueOS`,
-    description: `${mosqueMetadata.address} | ${mosqueMetadata.name} | MosqueScreen Project by MosqueOS`,
+    title: `${metadata.name} Prayer Times | MosqueScreen Project by MosqueOS`,
+    description: `${metadata.address} | ${metadata.name} | MosqueScreen Project by MosqueOS`,
   }
 }
 
 export default async function FullYear() {
-  const prayerTimes = await getAllPrayerTimes()
-  const mosqueMetadata: MosqueMetadataType = await getMetaData()
+  const { prayer_times, metadata } = await getMosqueData()
 
   return (
     <div className="bg-white min-w-full min-h-screen">
-      <Calendar prayerTimes={prayerTimes} metadata={mosqueMetadata} />
+      <Calendar prayerTimes={prayer_times} metadata={metadata} />
     </div>
   )
 }

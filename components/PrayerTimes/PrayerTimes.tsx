@@ -53,11 +53,11 @@ export default function PrayerTimes({
         <tr className="text-center [&>*]:p-3 md:[&>*]:p-6 md:[&>*]:border [&>*]:border-mosqueGreen-dark [&>th]:border-t-0 [&>th:last-of-type]:border-r-0">
           {/* 3 columns: Label, Athan, Iqama */}
           <th className="sr-only">Prayer</th>
-          <th className="text-xl md:text-4xl font-extrabold">
+          <th className="text-xl md:text-5xl font-extrabold">
             <div>أذان</div>
             Athan
           </th>
-          <th className="text-xl md:text-4xl font-extrabold">
+          <th className="text-xl md:text-5xl font-extrabold">
             <div>إقامة</div>
             Iqama
           </th>
@@ -83,7 +83,7 @@ export default function PrayerTimes({
                 last-of-type:border-b-0
               "
             >
-              <th className="text-left md:text-right text-xl md:text-6xl font-bold">
+              <th className="text-left md:text-right text-xl md:text-5xl font-bold">
                 <div className="arabic-label mb-1">{prayer.arabicLabel}</div>
                 {prayer.label}
               </th>
