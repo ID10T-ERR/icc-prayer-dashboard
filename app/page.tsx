@@ -27,6 +27,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
   const { prayer_times, jummah_times, metadata } = await getMosqueData()
 
+  const jummahTimesICC = jummah_times.filter((jummah) => jummah.label !== "Jummah");
+  const jummahTimesAlNour = jummah_times.filter((jummah) => jummah.label === "Jummah")
+
   const todayDate = moment()
   const tomorrowDate = moment().add(1, "day")
 
@@ -49,10 +52,16 @@ export default async function Home() {
 
   let slides = [
     <SunriseJummahTiles
-      jummahTimes={jummahTimes}
-      key={"sunrise_jummah_times"}
+      jummahTimes={jummahTimesICC}
+      titleM="ICC Jummah Times"
+      key={"icc_jummah_times"}
     />,
-  ]
+    <SunriseJummahTiles
+      jummahTimes={jummahTimesAlNour}
+      titleM="Al-Nour Jummah Times"
+      key={"alnour_jummah_times"}
+    />,
+  ];
 
   return (
     <>

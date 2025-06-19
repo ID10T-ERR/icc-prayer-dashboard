@@ -7,7 +7,8 @@
   },
   "jummah_times": [
     { "label": "Jummah 1", "time": "13:00" },
-    { "label": "Jummah 2", "time": "14:00" }
+    { "label": "Jummah 2", "time": "14:00" },
+    { "label": "Jummah", "time": "13:30" }
   ],
   "prayer_times": [
     {
