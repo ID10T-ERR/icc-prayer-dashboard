@@ -82,9 +82,9 @@ export default async function Home() {
           <PrayerTimes today={today} /* tomorrow={tomorrow} */ />
         </section>
 
-        <div className="p-2 flex flex-col items-center justify-center text-center">
+        {/* <div className="p-2 flex flex-col items-center justify-center text-center">
           <Notice />
-        </div>
+        </div> */}
 
         <footer className="p-1">
           <div className="landscape-slider-wrapper">
