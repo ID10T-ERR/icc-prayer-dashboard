@@ -53,12 +53,12 @@ export default async function Home() {
   let slides = [
     <SunriseJummahTiles
       jummahTimes={jummahTimesICC}
-      titleM="ICC Jummah Times"
+      titleM="Al-Towbah Jumu'ah Times"
       key={"icc_jummah_times"}
     />,
     <SunriseJummahTiles
       jummahTimes={jummahTimesAlNour}
-      titleM="Al-Nour Jummah Times"
+      titleM="Al-Nour Jumu'ah Time"
       key={"alnour_jummah_times"}
     />,
   ];
