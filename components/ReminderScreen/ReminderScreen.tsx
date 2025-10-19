@@ -20,6 +20,7 @@ export default function ReminderScreen({ today }: ReminderScreenProps) {
     prayerName: "",
     arabicName: "",
   });
+  const [currentTime, setCurrentTime] = useState(moment().format("h:mm:ss A"));
 
   const PrayerTimesArray = [
     {
@@ -52,6 +53,7 @@ export default function ReminderScreen({ today }: ReminderScreenProps) {
   useEffect(() => {
     const checkReminder = () => {
       const now = moment();
+      setCurrentTime(now.format("h:mm:ss A"));
 
       for (const prayer of PrayerTimesArray) {
         // Check if it's Iqamah time (within 10 minutes after Iqamah starts)
@@ -100,6 +102,11 @@ export default function ReminderScreen({ today }: ReminderScreenProps) {
           filter: "brightness(0.15)"
         }}
       ></div>
+
+      {/* Clock in corner */}
+      <div className="absolute top-8 right-8 z-20 text-white text-4xl font-bold opacity-60">
+        {currentTime}
+      </div>
 
       {/* Content Overlay - Dimmed opacity for less distraction during prayer */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-8 opacity-60">
