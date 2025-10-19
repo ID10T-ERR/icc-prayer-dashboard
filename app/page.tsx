@@ -5,6 +5,7 @@ import CountdownScreen from "@/components/CountdownScreen/CountdownScreen"
 import Date from "@/components/Date/Date"
 import MosqueMetadata from "@/components/MosqueMetadata/MosqueMetadata"
 import Notice from "@/components/Notice/Notice"
+import ReminderScreen from "@/components/ReminderScreen/ReminderScreen"
 import SunriseJummahTiles from "@/components/SunriseJummahTiles/SunriseJummahTiles"
 import PrayerTimes from "@/components/PrayerTimes/PrayerTimes"
 import ServiceWorker from "@/components/ServiceWorker/ServiceWorker"
@@ -97,6 +98,7 @@ export default async function Home() {
       </main>
 
       <CountdownScreen today={today} />
+      <ReminderScreen today={today} />
       <Blackout prayerTimeToday={today} />
     </>
   )
