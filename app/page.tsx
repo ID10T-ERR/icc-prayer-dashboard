@@ -65,20 +65,20 @@ export default async function Home() {
 
   return (
     <>
-      <main className="p-4 md:p-5 digital-signage-content flex flex-col h-full">
-        <header className="flex flex-col items-center mb-4">
-          <div className="p-2">
+      <main className="digital-signage-content flex flex-col h-full py-4">
+        <header className="flex flex-col items-center mb-3">
+          <div className="p-1 mb-2">
             <Clock />
           </div>
-          <div className="p-2">
+          <div className="p-1">
             <Date />
           </div>
-          <div className="p-2">
+          <div className="p-1">
             <MosqueMetadata metadata={mosqueMetadata} />
           </div>
         </header>
 
-        <section className="p-2 flex flex-col items-center">
+        <section className="flex flex-col items-center mb-6">
           <PrayerTimes today={today} /* tomorrow={tomorrow} */ />
         </section>
 
@@ -86,7 +86,7 @@ export default async function Home() {
           <Notice />
         </div> */}
 
-        <footer className="p-1">
+        <footer className="mt-0">
           <div className="landscape-slider-wrapper">
             <SlidingBanner slides={slides} />
           </div>

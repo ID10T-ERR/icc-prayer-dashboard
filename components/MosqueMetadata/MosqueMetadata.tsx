@@ -10,7 +10,7 @@ export default function MosqueMetadata({
       {/* Larger logo */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        className="m-2 max-w-full max-h-40"
+        className="m-2 max-w-full max-h-52"
         src={metadata.logo_url}
         alt="Mosque Logo"
       />

@@ -38,8 +38,11 @@
   left: 3%;
   right: 3%;
   background: #04382d; /* or any color for the center area */
-  overflow: auto;      
+  overflow-y: auto;
+  overflow-x: hidden;      
   border-radius: 20px; /* optional: if you want corners inside too */
+  display: flex;
+  justify-content: center;
 }
 
 /* Optional portrait mode adjustments */
@@ -47,7 +50,7 @@
   .digital-signage-content {
     width: 1080px;
     height: 1920px;
-    margin: auto;
+    margin: 0 auto;
     overflow: hidden;
   }
 
@@ -60,4 +63,11 @@
     overflow-x: auto;
     white-space: nowrap;
   }
+}
+
+/* Force proper centering for portrait display */
+.digital-signage-content {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
 }

@@ -113,7 +113,7 @@ export default function PrayerTimes({
                   <img
                     src="/sun-128.png"
                     alt="Sunrise"
-                    className="inline-block h-8 w-8 mr-2 align-middle"
+                    className="inline-block h-8 w-8 md:h-11 md:w-11 mr-2 align-middle"
                   />
                   Sunrise {moment(today.sunrise_start, ["HH:mm"]).format("h:mm")}
                 </td>
