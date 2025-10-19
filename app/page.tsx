@@ -1,6 +1,7 @@
 // app/page.tsx
 import Blackout from "@/components/Blackout/Blackout"
 import Clock from "@/components/Clock/Clock"
+import CountdownScreen from "@/components/CountdownScreen/CountdownScreen"
 import Date from "@/components/Date/Date"
 import MosqueMetadata from "@/components/MosqueMetadata/MosqueMetadata"
 import Notice from "@/components/Notice/Notice"
@@ -95,6 +96,7 @@ export default async function Home() {
         <ServiceWorker />
       </main>
 
+      <CountdownScreen today={today} />
       <Blackout prayerTimeToday={today} />
     </>
   )
