@@ -64,7 +64,7 @@ export default async function Home() {
         </header>
 
         <section className="flex flex-col items-center mb-6">
-          <PrayerTimes today={today} />
+          <PrayerTimes today={today} tomorrow={tomorrow} />
         </section>
 
         <footer className="mt-0">
