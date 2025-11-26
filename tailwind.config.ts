@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss"
 
-const primaryColor       = process.env.THEME_COLOR_PRIMARY     || '#0F715D';
+const primaryColor       = process.env.THEME_COLOR_PRIMARY     || '#08705b';
 const primaryAltColor    = process.env.THEME_COLOR_PRIMARY_ALT || '#0C5A4B';
 const onPrimaryColor     = process.env.THEME_COLOR_ON_PRIMARY     || '#FFFFFF';
 const onPrimaryAltColor  = process.env.THEME_COLOR_ON_PRIMARY_ALT || '#FFFFFF';
@@ -34,6 +34,11 @@ const config: Config = {
           primaryAlt: primaryAltColor,
           onPrimary: onPrimaryColor,
           onPrimaryAlt: onPrimaryAltColor,
+        },
+        mosqueGreen: {
+          DEFAULT: '#08705b',
+          dark: '#0C5A4B',
+          highlight: '#10b981',
         },
       },
     },

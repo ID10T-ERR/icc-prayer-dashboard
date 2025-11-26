@@ -27,7 +27,7 @@ export default function SunriseJummahTiles({
           key={index}
         >
           <dt className="text-sm lg:text-2xl font-medium">
-            {jummahTime.label}
+            {jummahTime.label.replace(/Jummah/g, "Jumu'ah")}
           </dt>
           <dd className="mt-1 text-xl lg:text-5xl font-bold tracking-tight">
             {moment(jummahTime.time, ["HH:mm"]).format("h:mm")}
