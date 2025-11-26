@@ -3,6 +3,7 @@ import Clock from "@/components/Clock/Clock"
 import CountdownScreen from "@/components/CountdownScreen/CountdownScreen"
 import Date from "@/components/Date/Date"
 import MosqueMetadata from "@/components/MosqueMetadata/MosqueMetadata"
+import PrayerTimes from "@/components/PrayerTimes/PrayerTimes"
 import ReminderScreen from "@/components/ReminderScreen/ReminderScreen"
 import ServiceWorker from "@/components/ServiceWorker/ServiceWorker"
 import { getMosqueData } from "@/services/MosqueDataService"
@@ -104,6 +105,7 @@ export default async function Home() {
             <div className="text-2xl font-bold">
               {moment(jummahTimesAlNour[0].time, ["HH:mm"]).format("A")}
             </div>
+          </div>
           </div>
         </footer>
 
