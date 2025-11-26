@@ -1,6 +1,6 @@
 export default function Notice() {
   return (
-    <div className="flex items-center justify-center text-white text-center">
+    <div className="flex text-mosqueBrand-onPrimary text-center md:text-left">
       <div className="mr-4 flex-shrink-0 self-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"

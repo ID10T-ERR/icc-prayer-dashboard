@@ -1,105 +1,86 @@
-// app/page.tsx
 import Blackout from "@/components/Blackout/Blackout"
 import Clock from "@/components/Clock/Clock"
-import CountdownScreen from "@/components/CountdownScreen/CountdownScreen"
 import Date from "@/components/Date/Date"
 import MosqueMetadata from "@/components/MosqueMetadata/MosqueMetadata"
 import Notice from "@/components/Notice/Notice"
-import ReminderScreen from "@/components/ReminderScreen/ReminderScreen"
 import SunriseJummahTiles from "@/components/SunriseJummahTiles/SunriseJummahTiles"
 import PrayerTimes from "@/components/PrayerTimes/PrayerTimes"
 import ServiceWorker from "@/components/ServiceWorker/ServiceWorker"
 import SlidingBanner from "@/components/SlidingBanner/SlidingBanner"
-import { getMosqueData } from "@/services/MosqueDataService"
-import moment from "moment"
-import type { DailyPrayerTime } from "@/types/DailyPrayerTimeType"
+import {
+  getJummahTimes,
+  getMetaData,
+  getPrayerTimesForUpcomingDays,
+  getPrayerTimesForToday,
+  getPrayerTimesForTomorrow,
+} from "@/services/MosqueDataService"
+import type {
+  DailyPrayerTime,
+  UpcomingPrayerTimes,
+} from "@/types/DailyPrayerTimeType"
 import type { JummahTimes } from "@/types/JummahTimesType"
 import type { MosqueMetadataType } from "@/types/MosqueDataType"
 import type { Metadata } from "next"
+import UpcomingPrayerDayTiles from "@/components/UpcomingPrayerDayTiles/UpcomingPrayerDayTiles"
+import "./prayer-times.css"
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { metadata }: { metadata: MosqueMetadataType } = await getMosqueData()
+  const mosqueMetadata: MosqueMetadataType = await getMetaData()
 
   return {
-    title: `${metadata.name} Prayer Times | MosqueScreen Project by MosqueOS`,
-    description: `${metadata.address} | ${metadata.name} | MosqueScreen Project by MosqueOS`,
+    title: `${mosqueMetadata.name} Prayer Times | MosqueScreen Project by MosqueOS`,
+    description: `${mosqueMetadata.address} | ${mosqueMetadata.name} | MosqueScreen Project by MosqueOS`,
   }
 }
 
 export default async function Home() {
-  const { prayer_times, jummah_times, metadata } = await getMosqueData()
-
-  const jummahTimesICC = jummah_times.filter((jummah) => jummah.label !== "Jummah");
-  const jummahTimesAlNour = jummah_times.filter((jummah) => jummah.label === "Jummah")
-
-  const todayDate = moment()
-  const tomorrowDate = moment().add(1, "day")
-
-  const today: DailyPrayerTime =
-    prayer_times.find(
-      (p) =>
-        p.day_of_month === todayDate.format("D") &&
-        p.month === todayDate.format("M")
-    ) ?? prayer_times[0]
-
-  const tomorrow: DailyPrayerTime =
-    prayer_times.find(
-      (p) =>
-        p.day_of_month === tomorrowDate.format("D") &&
-        p.month === tomorrowDate.format("M")
-    ) ?? prayer_times[1]
-
-  const jummahTimes: JummahTimes = jummah_times
-  const mosqueMetadata: MosqueMetadataType = metadata
+  const today: DailyPrayerTime = await getPrayerTimesForToday()
+  const tomorrow: DailyPrayerTime = await getPrayerTimesForTomorrow()
+  const jummahTimes: JummahTimes = await getJummahTimes()
+  const mosqueMetadata: MosqueMetadataType = await getMetaData()
+  const upcomingPrayerDays: UpcomingPrayerTimes[] =
+    await getPrayerTimesForUpcomingDays()
 
   let slides = [
     <SunriseJummahTiles
-      jummahTimes={jummahTimesICC}
-      titleM="Al-Towbah Jumu'ah Times"
-      key={"icc_jummah_times"}
+      sunrise={today.sunrise_start}
+      jummahTimes={jummahTimes}
+      key={"sunrise_jummah_times"}
     />,
-    <SunriseJummahTiles
-      jummahTimes={jummahTimesAlNour}
-      titleM="Al-Nour Jumu'ah Time"
-      key={"alnour_jummah_times"}
-    />,
-  ];
+  ]
+
+  upcomingPrayerDays.forEach((times) => {
+    slides.push(<UpcomingPrayerDayTiles times={times} />)
+  })
 
   return (
-    <>
-      <main className="digital-signage-content flex flex-col h-full py-4">
-        <header className="flex flex-col items-center mb-3">
-          <div className="p-1 mb-2">
-            <Clock />
+    <div className="bg-mosqueBrand min-h-screen min-w-full">
+      <main className="md:p-5">
+        <div className="md:grid md:grid-cols-8">
+          <div className="md:col-span-3">
+            <div className="p-4 md:p-6">
+              <Clock />
+            </div>
+            <div className="p-4 md:p-6">
+              <Date />
+            </div>
+            <div className="p-4 md:p-6">
+              <MosqueMetadata metadata={mosqueMetadata} />
+            </div>
+            <div className="hidden md:p-6 md:block">
+              <Notice />
+            </div>
           </div>
-          <div className="p-1">
-            <Date />
+          <div className="p-4 md:p-6 md:col-span-5">
+            <PrayerTimes today={today} tomorrow={tomorrow} />
           </div>
-          <div className="p-1">
-            <MosqueMetadata metadata={mosqueMetadata} />
-          </div>
-        </header>
-
-        <section className="flex flex-col items-center mb-6">
-          <PrayerTimes today={today} /* tomorrow={tomorrow} */ />
-        </section>
-
-        {/* <div className="p-2 flex flex-col items-center justify-center text-center">
-          <Notice />
-        </div> */}
-
-        <footer className="mt-0">
-          <div className="landscape-slider-wrapper">
-            <SlidingBanner slides={slides} />
-          </div>
-        </footer>
-
+        </div>
+        <div className="p-4 md:p-6">
+          <SlidingBanner slides={slides} />
+        </div>
         <ServiceWorker />
       </main>
-
-      <CountdownScreen today={today} />
-      <ReminderScreen today={today} />
       <Blackout prayerTimeToday={today} />
-    </>
+    </div>
   )
 }

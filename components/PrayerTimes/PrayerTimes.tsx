@@ -1,127 +1,128 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { getNextPrayer } from "@/services/PrayerTimeService";
-import { DailyPrayerTime } from "@/types/DailyPrayerTimeType";
-import moment from "moment";
+import { useEffect, useState } from "react"
+import { getNextPrayer } from "@/services/PrayerTimeService"
+import { DailyPrayerTime } from "@/types/DailyPrayerTimeType"
+import moment from "moment"
 
 export default function PrayerTimes({
   today,
+  tomorrow,
 }: {
-  today: DailyPrayerTime;
+  today: DailyPrayerTime
+  tomorrow: DailyPrayerTime
 }) {
   const PrayerTimesArray = [
     {
       label: "Fajr",
-      arabicLabel: "الفجر",
       data: today.fajr,
+      tomorrow: tomorrow.fajr,
     },
     {
       label: "Zuhr",
-      arabicLabel: "الظهر",
       data: today.zuhr,
+      tomorrow: tomorrow.zuhr,
     },
     {
       label: "Asr",
-      arabicLabel: "العصر",
       data: today.asr,
+      tomorrow: tomorrow.asr,
     },
     {
       label: "Maghrib",
-      arabicLabel: "المغرب",
       data: today.maghrib,
+      tomorrow: tomorrow.maghrib,
     },
     {
       label: "Isha",
-      arabicLabel: "العشاء",
       data: today.isha,
+      tomorrow: tomorrow.isha,
     },
-  ];
+  ]
 
-  const [nextPrayerTime, setNextPrayerTime] = useState(getNextPrayer(today));
+  const [nextPrayerTime, setNextPrayerTime] = useState(getNextPrayer(today))
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setNextPrayerTime(getNextPrayer(today));
-    }, 60 * 1000);
-    return () => clearInterval(interval);
-  }, [today]);
+      setNextPrayerTime(getNextPrayer(today))
+    }, 60 * 1000)
+
+    return () => clearInterval(interval)
+  }, [today])
 
   return (
-    <table className="mx-auto w-full border-collapse border-none text-white table-auto">
+    <table className="text-mosqueBrand-onPrimary mx-auto table-auto border-collapse border-none w-full">
       <thead>
-        <tr className="text-center [&>*]:p-3 md:[&>*]:p-6 md:[&>*]:border [&>*]:border-mosqueGreen-dark [&>th]:border-t-0 [&>th:last-of-type]:border-r-0">
-          {/* 3 columns: Label, Athan, Iqama */}
-          <th className="sr-only">Prayer</th>
-          <th className="text-xl md:text-6xl font-extrabold">
-            <div>أذان</div>
-            Athan
-          </th>
-          <th className="text-xl md:text-6xl font-extrabold">
-            <div>إقامة</div>
-            Iqama
-          </th>
+        <tr
+          className="text-center [&>*]:p-2 md:[&>*]:p-8
+          md:[&>*]:border [&>*]:border-mosqueBrand-primaryAlt
+          [&>th]:border-t-0 [&>th:last-of-type]:border-r-0"
+        >
+          <th className="sr-only">Prayer time</th>
+          <th className="md:text-5xl">Begins</th>
+          <th className="md:text-5xl">Jama&apos;ah</th>
+          <th className="md:text-5xl">Tomorrow</th>
         </tr>
       </thead>
       <tbody>
         {PrayerTimesArray.map((prayer, index) => (
-          <>
-            {/* Main Prayer Row */}
-            <tr
-              key={prayer.label}
-              className="
-                text-center
-                [&>*]:p-3
-                md:[&>*]:p-6
-                md:[&>*]:border
-                md:[&>*]:border-b-0
-                [&>*]:border-mosqueGreen-dark
-                md:[&>th]:w-20
-                [&>th]:border-l-0
-                [&>td:last-of-type]:border-r-0
-                border border-mosqueGreen-dark border-l-0 border-r-0
-                last-of-type:border-b-0
-              "
-            >
-              <th className="text-left md:text-right text-xl md:text-5xl font-bold">
-                <div className="arabic-label mb-1">{prayer.arabicLabel}</div>
-                {prayer.label}
-              </th>
-              {/* Athan */}
-              <td className="text-xl md:text-7xl font-semibold">
-                {moment(prayer.data.start, ["HH:mm"]).format("h:mm")}
-              </td>
-              {/* Iqama */}
-              <td className="text-xl md:text-7xl font-bold">
-                <span
-                  className={
-                    nextPrayerTime.today === true &&
-                    nextPrayerTime.prayerIndex === index
-                      ? "underline decoration-mosqueGreen-highlight underline-offset-8"
-                      : ""
-                  }
-                >
-                  {moment(prayer.data.congregation_start, ["HH:mm"]).format("h:mm")}
-                </span>
-              </td>
-            </tr>
-
-            {/* Sunrise row after Fajr */}
-            {prayer.label === "Fajr" && (
-              <tr>
-                <td colSpan={3} className="text-center text-base md:text-4xl py-3 font-bold">
-                  <img
-                    src="/sun-128.png"
-                    alt="Sunrise"
-                    className="inline-block h-8 w-8 md:h-11 md:w-11 mr-2 align-middle"
-                  />
-                  Sunrise {moment(today.sunrise_start, ["HH:mm"]).format("h:mm")}
-                </td>
-              </tr>
-            )}
-          </>
+          <tr
+            key={prayer.label}
+            className="
+              text-center
+              [&>*]:p-4
+              md:[&>*]:p-8
+              md:[&>*]:border md:[&>*]:border-b-0 [&>*]:border-mosqueBrand-primaryAlt
+              md:[&>th]:w-20
+              [&>th]:border-l-0
+              [&>td:last-of-type]:border-r-0
+              border border-mosqueBrand-primaryAlt border-l-0 border-r-0
+              last-of-type:border-b-0"
+          >
+            <th className="text-left text-xl md:text-5xl md:text-right">
+              {prayer.label}
+            </th>
+            <td className="text-xl md:text-6xl">
+              {moment(prayer.data.start, ["HH:mm"]).format("h:mm")}
+              {prayer.data?.start_secondary ? (
+                <div className="block mt-1 md:mt-2">
+                  {moment(prayer.data.start_secondary, ["HH:mm"]).format(
+                    "h:mm",
+                  )}
+                </div>
+              ) : null}
+            </td>
+            <td className={`font-bold text-xl md:text-6xl`}>
+              <span
+                className={
+                  nextPrayerTime.today === true &&
+                  nextPrayerTime.prayerIndex === index
+                    ? "underline decoration-mosqueBrand-highlight underline-offset-8"
+                    : ""
+                }
+              >
+                {moment(prayer.data.congregation_start, ["HH:mm"]).format(
+                  "h:mm",
+                )}
+              </span>
+            </td>
+            <td className={`text-xl md:text-6xl`}>
+              <span
+                className={
+                  nextPrayerTime.today === false &&
+                  nextPrayerTime.prayerIndex === index
+                    ? "underline decoration-mosqueBrand-highlight underline-offset-8"
+                    : ""
+                }
+              >
+                {moment(prayer.tomorrow.congregation_start, ["HH:mm"]).format(
+                  "h:mm",
+                )}
+              </span>
+            </td>
+          </tr>
         ))}
       </tbody>
     </table>
-  );
+  )
 }

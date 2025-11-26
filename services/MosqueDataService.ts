@@ -82,4 +82,3 @@ export async function getMetaData(): Promise<MosqueMetadataType> {
 
   return metadata
 }
-
