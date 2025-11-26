@@ -49,71 +49,25 @@ export default async function Home() {
 
   return (
     <>
-      <main className="flex flex-col h-screen w-full p-8 gap-6">
-        {/* Top Section: Logo, Clock, Date in a row */}
-        <header className="flex items-start justify-between px-4">
-          <div className="flex-shrink-0">
-            <MosqueMetadata metadata={mosqueMetadata} />
-          </div>
-          <div className="flex flex-col items-end gap-2">
+      <main className="digital-signage-content flex flex-col h-full py-4">
+        <header className="flex flex-col items-center mb-3">
+          <div className="p-1 mb-2">
             <Clock />
+          </div>
+          <div className="p-1">
             <Date />
+          </div>
+          <div className="p-1">
+            <MosqueMetadata metadata={mosqueMetadata} />
           </div>
         </header>
 
-        {/* Main Prayer Times Table - Masjidal Style */}
-        <section className="flex-1 flex items-center justify-center">
-          <div className="w-full max-w-7xl">
-            <table className="w-full text-white border-collapse">
-              <thead>
-                <tr className="bg-mosqueGreen-dark">
-                  <th className="text-left p-6 text-4xl font-bold"></th>
-                  <th className="text-center p-6 text-3xl font-bold">
-                    <div className="mb-2">أذان</div>
-                    <div>STARTS</div>
-                  </th>
-                  <th className="text-center p-6 text-3xl font-bold">
-                    <div className="mb-2">إقامة</div>
-                    <div>IQAMAH</div>
-                  </th>
-                  <th className="text-center p-6 text-3xl font-bold">
-                    <div>{moment().add(1, 'day').format('dddd')}</div>
-                    <div>{moment().add(1, 'day').format('MMM D')}</div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  { name: 'FAJR', arabic: 'الفجر', prayer: today.fajr, tomorrow: tomorrow?.fajr },
-                  { name: 'ZUHR', arabic: 'الظهر', prayer: today.zuhr, tomorrow: tomorrow?.zuhr },
-                  { name: 'ASR', arabic: 'العصر', prayer: today.asr, tomorrow: tomorrow?.asr },
-                  { name: 'MAGHRIB', arabic: 'المغرب', prayer: today.maghrib, tomorrow: tomorrow?.maghrib },
-                  { name: 'ISHA', arabic: 'العشاء', prayer: today.isha, tomorrow: tomorrow?.isha },
-                ].map((item, index) => (
-                  <tr key={item.name} className="border-b border-mosqueGreen-dark">
-                    <td className="bg-mosqueGreen-dark text-left p-6">
-                      <div className="text-5xl font-bold">{item.name}</div>
-                    </td>
-                    <td className="bg-white/5 text-center p-6 text-5xl font-semibold">
-                      {moment(item.prayer.start, ["HH:mm"]).format("h:mm")}
-                      <span className="text-3xl ml-2">{moment(item.prayer.start, ["HH:mm"]).format("A")}</span>
-                    </td>
-                    <td className="bg-white/10 text-center p-6 text-5xl font-bold">
-                      {moment(item.prayer.congregation_start, ["HH:mm"]).format("h:mm")}
-                      <span className="text-3xl ml-2">{moment(item.prayer.congregation_start, ["HH:mm"]).format("A")}</span>
-                    </td>
-                    <td className="bg-white/5 text-center p-6 text-4xl font-semibold">
-                      {item.tomorrow ? moment(item.tomorrow.congregation_start, ["HH:mm"]).format("h:mm A") : '-'}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+        <section className="flex flex-col items-center mb-6">
+          <PrayerTimes today={today} />
         </section>
 
-        {/* Bottom Section: Horizontal Jummah Times */}
-        <footer className="flex items-center justify-center gap-6 pb-4">
+        <footer className="mt-0">
+          <div className="flex items-center justify-center gap-6 pb-4">
           {/* Sunrise */}
           <div className="bg-[#04382d] p-6 rounded-lg text-white text-center min-w-[180px] border border-white/10">
             <div className="text-xl font-bold mb-2">Sunrise</div>
