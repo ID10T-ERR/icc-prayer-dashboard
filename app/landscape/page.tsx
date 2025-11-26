@@ -51,19 +51,6 @@ export default async function LandscapePage() {
   const jummahTimes: JummahTimes = jummah_times
   const mosqueMetadata: MosqueMetadataType = metadata
 
-  let slides = [
-    <SunriseJummahTiles
-      jummahTimes={jummahTimesICC}
-      titleM="Al-Towbah Jumu'ah Times"
-      key={"icc_jummah_times"}
-    />,
-    <SunriseJummahTiles
-      jummahTimes={jummahTimesAlNour}
-      titleM="Al-Nour Jumu'ah Time"
-      key={"alnour_jummah_times"}
-    />,
-  ];
-
   return (
     <>
       <main className="flex flex-col h-screen w-full p-8 gap-6">
@@ -129,22 +116,45 @@ export default async function LandscapePage() {
           </div>
         </section>
 
-        {/* Bottom Section: Info Cards */}
-        <footer className="flex items-center justify-center gap-6">
-          <div className="bg-mosqueGreen-dark p-4 rounded-lg text-white text-center min-w-[200px]">
-            <div className="text-lg font-bold mb-2">Sunrise</div>
-            <div className="text-3xl font-extrabold">
+        {/* Bottom Section: Horizontal Jummah Times */}
+        <footer className="flex items-center justify-center gap-6 pb-4">
+          {/* Sunrise */}
+          <div className="bg-[#04382d] p-6 rounded-lg text-white text-center min-w-[180px] border border-white/10">
+            <div className="text-xl font-bold mb-2">Sunrise</div>
+            <div className="text-4xl font-extrabold">
               {moment(today.sunrise_start, ["HH:mm"]).format("h:mm A")}
             </div>
           </div>
-          {jummahTimesICC.map((jummah, idx) => (
-            <div key={idx} className="bg-mosqueGreen-dark p-4 rounded-lg text-white text-center min-w-[200px]">
-              <div className="text-lg font-bold mb-2">{jummah.label.replace(/Jummah/g, "Jumu'ah")}</div>
-              <div className="text-3xl font-extrabold">
-                {moment(jummah.time, ["HH:mm"]).format("h:mm A")}
-              </div>
+
+          {/* Al-Towbah Jummah Times */}
+          <div className="bg-[#04382d] p-6 rounded-lg text-white border border-white/10">
+            <div className="text-xl font-bold mb-3 text-center">Al-Towbah Jumu&apos;ah Times</div>
+            <div className="flex gap-4">
+              {jummahTimesICC.map((jummah, idx) => (
+                <div key={idx} className="text-center min-w-[150px]">
+                  <div className="text-lg font-semibold mb-1">{jummah.label.replace(/Jummah/g, "Jumu'ah")}</div>
+                  <div className="text-4xl font-extrabold">
+                    {moment(jummah.time, ["HH:mm"]).format("h:mm")}
+                  </div>
+                  <div className="text-2xl font-bold">
+                    {moment(jummah.time, ["HH:mm"]).format("A")}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Al-Nour Jummah Time */}
+          <div className="bg-[#04382d] p-6 rounded-lg text-white text-center min-w-[180px] border border-white/10">
+            <div className="text-xl font-bold mb-3">Al-Nour Jumu&apos;ah Time</div>
+            <div className="text-lg font-semibold mb-1">{jummahTimesAlNour[0].label.replace(/Jummah/g, "Jumu'ah")}</div>
+            <div className="text-4xl font-extrabold">
+              {moment(jummahTimesAlNour[0].time, ["HH:mm"]).format("h:mm")}
+            </div>
+            <div className="text-2xl font-bold">
+              {moment(jummahTimesAlNour[0].time, ["HH:mm"]).format("A")}
+            </div>
+          </div>
         </footer>
 
         <ServiceWorker />
