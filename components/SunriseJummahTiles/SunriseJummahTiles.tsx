@@ -4,36 +4,39 @@ import moment from "moment"
 export default function SunriseJummahTiles({
   sunrise,
   jummahTimes = [],
+  titleM,
 }: {
-  sunrise: string
+  sunrise?: string
   jummahTimes: JummahTimes
+  titleM?: string
 }) {
   return (
-    <dl
-      className={`grid justify-items-stretch lg:grid-cols-${
-        jummahTimes.length + 1
-      } text-center gap-0 md:gap-3`}
-    >
-      <div className="bg-mosqueBrand-primaryAlt text-white p-4 lg:p-6 lg:col-auto">
-        <dt className="text-sm lg:text-2xl font-medium">Sunrise</dt>
-        <dd className="mt-1 text-xl lg:text-5xl font-bold tracking-tight">
-          {moment(sunrise, ["HH:mm"]).format("h:mm")}
-        </dd>
-      </div>
-
-      {jummahTimes.map((jummahTime, index) => (
-        <div
-          className="bg-mosqueBrand-primaryAlt text-white p-4 lg:p-6 lg:col-auto"
-          key={index}
-        >
-          <dt className="text-sm lg:text-2xl font-medium">
-            {jummahTime.label.replace(/Jummah/g, "Jumu'ah")}
-          </dt>
-          <dd className="mt-1 text-xl lg:text-5xl font-bold tracking-tight">
-            {moment(jummahTime.time, ["HH:mm"]).format("h:mm")}
-          </dd>
+    <div className="text-center">
+      {/* Add a shaded box around the title */}
+      {titleM && (
+        <div className="bg-gray-700 text-white p-3 rounded-md shadow-md mb-2">
+          <h2 className="text-xl md:text-3xl font-bold text-center">{titleM}</h2>
         </div>
-      ))}
-    </dl>
+      )}
+      <dl
+        className={`grid ${
+          jummahTimes.length > 1 ? "grid-cols-2" : "grid-cols-1"
+        } justify-items-center gap-3 w-fit mx-auto text-center`}
+      >
+        {jummahTimes.map((jummahTime, index) => (
+          <div
+            key={index}
+            className="bg-[#0C5A4B] text-white p-3 rounded-md shadow-md w-full"
+          >
+            <dt className="text-xl md:text-3xl font-bold">
+              {jummahTime.label.replace(/Jummah/g, "Jumu'ah")}
+            </dt>
+            <dd className="mt-2 text-2xl md:text-4xl font-extrabold tracking-tight">
+              {moment(jummahTime.time, ["HH:mm"]).format("h:mm")}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
   )
 }
