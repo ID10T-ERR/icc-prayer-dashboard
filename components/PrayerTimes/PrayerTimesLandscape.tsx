@@ -66,7 +66,7 @@ export default function PrayerTimesLandscape({
           <tr className="text-center border-b-2 border-white/30">
             <th className="text-left pb-4"></th>
             <th className="text-3xl font-bold pb-4 px-6">Begins</th>
-            <th className="text-3xl font-bold pb-4 px-6">Jama'ah</th>
+            <th className="text-3xl font-bold pb-4 px-6">Jama&apos;ah</th>
             <th className="text-3xl font-bold pb-4 px-6">Tomorrow</th>
           </tr>
         </thead>
