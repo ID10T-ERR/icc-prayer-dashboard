@@ -81,7 +81,7 @@ export default async function Home() {
         </header>
 
         <section className="flex flex-col items-center mb-6">
-          <PrayerTimes today={today} /* tomorrow={tomorrow} */ />
+          <PrayerTimes today={today} tomorrow={tomorrow} />
         </section>
 
         {/* <div className="p-2 flex flex-col items-center justify-center text-center">
