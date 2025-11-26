@@ -53,13 +53,13 @@ export default async function LandscapePage() {
 
   let slides = [
     <SunriseJummahTiles
+      sunrise={today.sunrise_start}
       jummahTimes={jummahTimesICC}
-      titleM="Al-Towbah Jumu'ah Times"
       key={"icc_jummah_times"}
     />,
     <SunriseJummahTiles
+      sunrise={today.sunrise_start}
       jummahTimes={jummahTimesAlNour}
-      titleM="Al-Nour Jumu'ah Time"
       key={"alnour_jummah_times"}
     />,
   ];
