@@ -29,17 +29,45 @@
     0 0, 0 0, 0 0, 0 0;
 }
 
-/* Inner content area with solid background */
+/* Inner content area with solid background, 
+   centered horizontally by left:5% & right:5% */
 .inner-content {
   position: absolute;
   top: 3%;
-  bottom: 3%;
+  bottom: 3%; /* slightly smaller than 5% if you want more vertical space */
   left: 3%;
   right: 3%;
-  background: #04382d;
+  background: #04382d; /* or any color for the center area */
   overflow-y: auto;
-  overflow-x: hidden;
-  border-radius: 20px;
+  overflow-x: hidden;      
+  border-radius: 20px; /* optional: if you want corners inside too */
   display: flex;
   justify-content: center;
+}
+
+/* Optional portrait mode adjustments */
+@media screen and (min-width: 1024px) {
+  .digital-signage-content {
+    width: 1080px;
+    height: 1920px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .landscape-slider-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* Force proper centering for portrait display */
+.digital-signage-content {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
 }

@@ -1,11 +1,15 @@
+// app/page.tsx
 import Blackout from "@/components/Blackout/Blackout"
 import Clock from "@/components/Clock/Clock"
 import CountdownScreen from "@/components/CountdownScreen/CountdownScreen"
 import Date from "@/components/Date/Date"
 import MosqueMetadata from "@/components/MosqueMetadata/MosqueMetadata"
-import PrayerTimes from "@/components/PrayerTimes/PrayerTimes"
+import Notice from "@/components/Notice/Notice"
 import ReminderScreen from "@/components/ReminderScreen/ReminderScreen"
+import SunriseJummahTiles from "@/components/SunriseJummahTiles/SunriseJummahTiles"
+import PrayerTimes from "@/components/PrayerTimes/PrayerTimes"
 import ServiceWorker from "@/components/ServiceWorker/ServiceWorker"
+import SlidingBanner from "@/components/SlidingBanner/SlidingBanner"
 import { getMosqueData } from "@/services/MosqueDataService"
 import moment from "moment"
 import type { DailyPrayerTime } from "@/types/DailyPrayerTimeType"
@@ -48,6 +52,19 @@ export default async function Home() {
   const jummahTimes: JummahTimes = jummah_times
   const mosqueMetadata: MosqueMetadataType = metadata
 
+  let slides = [
+    <SunriseJummahTiles
+      jummahTimes={jummahTimesICC}
+      titleM="Al-Towbah Jumu'ah Times"
+      key={"icc_jummah_times"}
+    />,
+    <SunriseJummahTiles
+      jummahTimes={jummahTimesAlNour}
+      titleM="Al-Nour Jumu'ah Time"
+      key={"alnour_jummah_times"}
+    />,
+  ];
+
   return (
     <>
       <main className="digital-signage-content flex flex-col h-full py-4">
@@ -64,48 +81,16 @@ export default async function Home() {
         </header>
 
         <section className="flex flex-col items-center mb-6">
-          <PrayerTimes today={today} tomorrow={tomorrow} />
+          <PrayerTimes today={today} /* tomorrow={tomorrow} */ />
         </section>
 
+        {/* <div className="p-2 flex flex-col items-center justify-center text-center">
+          <Notice />
+        </div> */}
+
         <footer className="mt-0">
-          <div className="flex items-center justify-center gap-6 pb-4">
-          {/* Sunrise */}
-          <div className="bg-[#04382d] p-6 rounded-lg text-white text-center min-w-[180px] border border-white/10">
-            <div className="text-xl font-bold mb-2">Sunrise</div>
-            <div className="text-4xl font-extrabold">
-              {moment(today.sunrise_start, ["HH:mm"]).format("h:mm A")}
-            </div>
-          </div>
-
-          {/* Al-Towbah Jummah Times */}
-          <div className="bg-[#04382d] p-6 rounded-lg text-white border border-white/10">
-            <div className="text-xl font-bold mb-3 text-center">Al-Towbah Jumu&apos;ah Times</div>
-            <div className="flex gap-4">
-              {jummahTimesICC.map((jummah, idx) => (
-                <div key={idx} className="text-center min-w-[150px]">
-                  <div className="text-lg font-semibold mb-1">{jummah.label.replace(/Jummah/g, "Jumu'ah")}</div>
-                  <div className="text-4xl font-extrabold">
-                    {moment(jummah.time, ["HH:mm"]).format("h:mm")}
-                  </div>
-                  <div className="text-2xl font-bold">
-                    {moment(jummah.time, ["HH:mm"]).format("A")}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Al-Nour Jummah Time */}
-          <div className="bg-[#04382d] p-6 rounded-lg text-white text-center min-w-[180px] border border-white/10">
-            <div className="text-xl font-bold mb-3">Al-Nour Jumu&apos;ah Time</div>
-            <div className="text-lg font-semibold mb-1">{jummahTimesAlNour[0].label.replace(/Jummah/g, "Jumu'ah")}</div>
-            <div className="text-4xl font-extrabold">
-              {moment(jummahTimesAlNour[0].time, ["HH:mm"]).format("h:mm")}
-            </div>
-            <div className="text-2xl font-bold">
-              {moment(jummahTimesAlNour[0].time, ["HH:mm"]).format("A")}
-            </div>
-          </div>
+          <div className="landscape-slider-wrapper">
+            <SlidingBanner slides={slides} />
           </div>
         </footer>
 
