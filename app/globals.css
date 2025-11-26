@@ -71,3 +71,63 @@
   max-width: 1080px;
   margin: 0 auto;
 }
+
+/* Clock box (white) on the left like the reference */
+.clock-box {
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  display: inline-block;
+  padding: 12px 18px;
+}
+
+.clock-time {
+  color: #0b6b59; /* dark mosque green for the digits */
+  font-weight: 900;
+  line-height: 1;
+  display: block;
+}
+
+/* Prayer table visual styles to match the second image */
+.prayer-table {
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prayer-table th,
+.prayer-table td {
+  padding: 16px 18px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  vertical-align: middle;
+}
+
+.prayer-table thead th {
+  font-weight: 800;
+  color: rgba(255,255,255,0.95);
+}
+
+.prayer-table tbody th {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.prayer-table tbody td {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Larger typography for desktop */
+@media screen and (min-width: 768px) {
+  .clock-time { font-size: 5.25rem; }
+  .prayer-table thead th { font-size: 2.25rem; }
+  .prayer-table tbody th { font-size: 2.5rem; }
+  .prayer-table tbody td { font-size: 3rem; }
+  .prayer-table tbody td .underline { text-decoration-thickness: 4px; }
+}
+
+/* Slight spacing tweak for the inner content area so left column breathes */
+.inner-content main, .inner-content > main, .inner-content > div {
+  width: 100%;
+}
